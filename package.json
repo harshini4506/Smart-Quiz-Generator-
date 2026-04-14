@@ -1,0 +1,29 @@
+{
+  "name": "smart-quiz-generator-ai-mern",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "server": "node server/app.js",
+    "server:dev": "nodemon server/app.js",
+    "client": "npm --prefix frontend start",
+    "dev": "concurrently \"npm run server:dev\" \"npm run client\"",
+    "clean:ports": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$ports = 3000,5000; $pids = Get-NetTCPConnection -LocalPort $ports -State Listen -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique; if($pids){ foreach($id in $pids){ try { Stop-Process -Id $id -Force -ErrorAction Stop; Write-Host ('Stopped PID {0}' -f $id) } catch { Write-Host ('Could not stop PID {0}: {1}' -f $id, $_.Exception.Message) } } } else { Write-Host 'No existing listeners on 3000/5000' }\"",
+    "dev:clean": "npm run clean:ports && npm run dev"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "jszip": "^3.10.1",
+    "mongoose": "^8.9.5",
+    "multer": "^1.4.5-lts.1",
+    "openai": "^4.76.0",
+    "pdf-parse": "^1.1.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9"
+  }
+}
