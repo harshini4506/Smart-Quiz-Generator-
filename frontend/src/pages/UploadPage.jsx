@@ -33,16 +33,16 @@ export default function UploadPage({ onUploaded }) {
   };
 
   return (
-    <div className="min-h-screen bg-white py-12">
+    <div className="min-h-screen bg-white py-8 sm:py-12">
       <div className="mx-auto max-w-2xl px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-3xl shadow-2xl p-10 border border-gray-200"
+          className="bg-white rounded-3xl shadow-2xl p-5 sm:p-8 lg:p-10 border border-gray-200"
         >
           <div className="text-center mb-8">
-            <div className="text-6xl mb-4">📚</div>
-            <h1 className="text-4xl font-bold text-gray-800 mb-2">Upload Study Material</h1>
+            <div className="text-5xl sm:text-6xl mb-4">📚</div>
+            <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">Upload Study Material</h1>
             <p className="text-gray-600">Supported formats: PDF, DOCX, TXT, PPTX</p>
             <div className="mt-4 flex justify-center gap-2">
               <span className="text-3xl">⭐</span>
@@ -69,7 +69,7 @@ export default function UploadPage({ onUploaded }) {
               whileTap={{ scale: 0.98 }}
               onClick={upload} 
               disabled={!file}
-              className="w-full rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4 text-lg font-bold text-white hover:from-blue-600 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg"
+              className="w-full rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4 text-base sm:text-lg font-bold text-white hover:from-blue-600 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg"
             >
               Upload File
             </motion.button>

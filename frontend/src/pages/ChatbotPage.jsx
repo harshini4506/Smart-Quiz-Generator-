@@ -98,7 +98,7 @@ export default function ChatbotPage({ selectedDocId }) {
   }, [chatHistory, isLoading]);
 
   return (
-    <div className="min-h-screen bg-white py-12">
+    <div className="min-h-screen bg-white py-8 sm:py-12">
       <div className="mx-auto max-w-5xl px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -106,10 +106,10 @@ export default function ChatbotPage({ selectedDocId }) {
           className="bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden"
         >
           {/* Header */}
-          <div className="bg-white border-b border-gray-200 p-8 text-center">
-            <div className="text-6xl mb-4">💬</div>
-            <h1 className="text-4xl font-bold text-gray-800 mb-2">AI Study Assistant</h1>
-            <p className="text-gray-600 text-lg">Ask questions and get instant answers from your documents</p>
+          <div className="bg-white border-b border-gray-200 p-5 sm:p-8 text-center">
+            <div className="text-5xl sm:text-6xl mb-4">💬</div>
+            <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">AI Study Assistant</h1>
+            <p className="text-gray-600 text-base sm:text-lg">Ask questions and get instant answers from your documents</p>
             <div className="mt-4 flex justify-center gap-3">
               <span className="text-3xl animate-pulse">⭐</span>
               <span className="text-3xl animate-bounce">✨</span>
@@ -118,7 +118,7 @@ export default function ChatbotPage({ selectedDocId }) {
           </div>
 
           {/* Chat Container */}
-          <div className="p-6 bg-white">
+          <div className="p-4 sm:p-6 bg-white">
             {/* Document Selector */}
             <div className="mb-6 pb-6 border-b border-gray-200">
               <label className="block text-gray-700 font-semibold mb-3">📄 Select Document</label>
@@ -171,14 +171,14 @@ export default function ChatbotPage({ selectedDocId }) {
                     className={`flex ${chat.type === 'question' ? 'justify-end' : 'justify-start'}`}
                   >
                     {chat.type === 'question' && (
-                      <div className="bg-blue-500 text-white px-5 py-3 rounded-2xl rounded-tr-sm max-w-md shadow-lg">
+                      <div className="bg-blue-500 text-white px-4 sm:px-5 py-3 rounded-2xl rounded-tr-sm max-w-[85%] sm:max-w-md shadow-lg">
                         <p className="text-sm font-semibold mb-1">You</p>
                         <p className="leading-relaxed">{chat.message}</p>
                       </div>
                     )}
                     
                     {chat.type === 'answer' && (
-                      <div className="bg-white text-gray-800 px-5 py-4 rounded-2xl rounded-tl-sm max-w-2xl shadow-lg">
+                      <div className="bg-white text-gray-800 px-4 sm:px-5 py-4 rounded-2xl rounded-tl-sm max-w-[90%] sm:max-w-2xl shadow-lg">
                         <div className="flex items-center gap-2 mb-2">
                           <span className="text-lg">🤖</span>
                           <p className="text-sm font-bold text-blue-700">AI Assistant</p>
@@ -188,7 +188,7 @@ export default function ChatbotPage({ selectedDocId }) {
                     )}
                     
                     {chat.type === 'error' && (
-                      <div className="bg-red-100 text-red-800 px-5 py-3 rounded-2xl max-w-md shadow-lg border-2 border-red-300">
+                      <div className="bg-red-100 text-red-800 px-4 sm:px-5 py-3 rounded-2xl max-w-[85%] sm:max-w-md shadow-lg border-2 border-red-300">
                         <p className="leading-relaxed">{chat.message}</p>
                       </div>
                     )}
@@ -233,10 +233,10 @@ export default function ChatbotPage({ selectedDocId }) {
                 </div>
               )}
               
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <input 
                   ref={inputRef}
-                  className="flex-1 rounded-2xl border-2 border-gray-300 bg-white p-4 text-gray-900 text-lg focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all placeholder-gray-400" 
+                  className="flex-1 rounded-2xl border-2 border-gray-300 bg-white p-4 text-gray-900 text-base sm:text-lg focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all placeholder-gray-400" 
                   value={question} 
                   onChange={(e) => setQuestion(e.target.value)} 
                   onKeyPress={(e) => e.key === 'Enter' && !isLoading && ask()}
@@ -248,7 +248,7 @@ export default function ChatbotPage({ selectedDocId }) {
                   whileTap={{ scale: 0.95 }}
                   onClick={ask} 
                   disabled={isLoading}
-                  className={`rounded-2xl px-8 py-4 text-lg font-bold text-white transition-all shadow-lg ${
+                  className={`rounded-2xl px-8 py-4 text-base sm:text-lg font-bold text-white transition-all shadow-lg ${
                     isLoading 
                       ? 'bg-gray-400 cursor-not-allowed' 
                       : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700'

@@ -81,9 +81,9 @@ export default function ResultsPage({ resultData }) {
     return (
       <div className="min-h-screen bg-white py-12">
         <div className="mx-auto max-w-3xl px-4">
-          <div className="bg-white rounded-3xl shadow-2xl p-10 border border-gray-200 text-center">
-            <div className="text-6xl mb-4">📊</div>
-            <p className="text-xl text-gray-700">No result yet. Take a quiz first!</p>
+            <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-10 border border-gray-200 text-center">
+              <div className="text-5xl sm:text-6xl mb-4">📊</div>
+              <p className="text-base sm:text-xl text-gray-700">No result yet. Take a quiz first!</p>
             <button 
               onClick={() => navigate('/quiz')} 
               className="mt-6 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-3 font-bold text-white hover:from-blue-600 hover:to-blue-700 transition-all shadow-lg"
@@ -110,29 +110,29 @@ export default function ResultsPage({ resultData }) {
   };
 
   return (
-    <div className="min-h-screen bg-white py-12">
+    <div className="min-h-screen bg-white py-8 sm:py-12">
       <div className="mx-auto max-w-4xl px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-3xl shadow-2xl p-10 border border-gray-200"
+          className="bg-white rounded-3xl shadow-2xl p-5 sm:p-8 lg:p-10 border border-gray-200"
         >
           <div className="text-center mb-8">
-            <div className="text-6xl mb-4">{getScoreEmoji()}</div>
-            <h1 className="text-4xl font-bold text-gray-800 mb-2">Quiz Results</h1>
+            <div className="text-5xl sm:text-6xl mb-4">{getScoreEmoji()}</div>
+            <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">Quiz Results</h1>
             <div className="mt-4">
               <span className="text-3xl">⭐</span>
             </div>
           </div>
 
           <div className="mb-8 text-center">
-            <div className={`text-7xl font-bold mb-2 ${getScoreColor()}`}>
+            <div className={`text-5xl sm:text-7xl font-bold mb-2 ${getScoreColor()}`}>
               {scorePercentage}%
             </div>
-            <p className="text-xl text-gray-600">Your Score</p>
+            <p className="text-base sm:text-xl text-gray-600">Your Score</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-8">
             <div className="bg-green-50 border border-green-200 rounded-2xl p-6 text-center">
               <div className="text-4xl font-bold text-green-700 mb-2">{resultData.correct_answers || 0}</div>
               <p className="text-gray-700 font-semibold">Correct Answers</p>
@@ -164,7 +164,7 @@ export default function ResultsPage({ resultData }) {
             </div>
           )}
 
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <button 
               onClick={exportPdf} 
               className="flex-1 rounded-xl border-2 border-gray-300 bg-white px-6 py-3 font-bold text-gray-700 hover:bg-gray-50 transition-all"

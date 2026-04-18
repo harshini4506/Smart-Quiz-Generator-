@@ -158,11 +158,11 @@ export default function QuizPage({ selectedDocId, setResultData }) {
   const q = quiz[index];
 
   return (
-    <div className="min-h-screen bg-white py-12">
+    <div className="min-h-screen bg-white py-8 sm:py-12">
       <div className="mx-auto max-w-4xl px-4">
         {popupMessage && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
-            <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl border border-gray-200">
+            <div className="w-full max-w-lg rounded-2xl bg-white p-5 sm:p-6 shadow-2xl border border-gray-200">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-wide text-red-600">Quiz generation warning</p>
@@ -193,13 +193,13 @@ export default function QuizPage({ selectedDocId, setResultData }) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-3xl shadow-2xl p-10 border border-gray-200"
+          className="bg-white rounded-3xl shadow-2xl p-5 sm:p-8 lg:p-10 border border-gray-200"
         >
           {!quiz.length ? (
             <>
               <div className="text-center mb-8">
-                <div className="text-6xl mb-4">📝</div>
-                <h1 className="text-4xl font-bold text-gray-800 mb-2">Quiz Generator</h1>
+                <div className="text-5xl sm:text-6xl mb-4">📝</div>
+                <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">Quiz Generator</h1>
                 <p className="text-gray-600">Create a personalized quiz from your document</p>
                 <div className="mt-4 flex justify-center gap-2">
                   <span className="text-3xl">⭐</span>
@@ -213,7 +213,7 @@ export default function QuizPage({ selectedDocId, setResultData }) {
                   <select 
                     value={currentDocId} 
                     onChange={(e) => handleDocChange(e.target.value)} 
-                    className="w-full rounded-xl border border-gray-300 bg-gray-50 p-4 text-gray-800 text-lg font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all cursor-pointer"
+                    className="w-full rounded-xl border border-gray-300 bg-gray-50 p-4 text-gray-800 text-base sm:text-lg font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all cursor-pointer"
                   >
                     <option value="">Choose a document...</option>
                     {docs.map((doc) => (
@@ -231,7 +231,7 @@ export default function QuizPage({ selectedDocId, setResultData }) {
                     max={recommendedMax || undefined} 
                     value={numQuestions} 
                     onChange={(e) => setNumQuestions(e.target.value)} 
-                    className="w-full rounded-xl border border-gray-300 bg-gray-50 p-4 text-gray-800 text-lg font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all" 
+                    className="w-full rounded-xl border border-gray-300 bg-gray-50 p-4 text-gray-800 text-base sm:text-lg font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all" 
                   />
                   {recommendedMax && Number(numQuestions || 0) > recommendedMax && (
                     <p className="mt-2 text-sm text-red-600 font-semibold">
@@ -250,7 +250,7 @@ export default function QuizPage({ selectedDocId, setResultData }) {
                   <select 
                     value={difficulty} 
                     onChange={(e) => setDifficulty(e.target.value)} 
-                    className="w-full rounded-xl border border-gray-300 bg-gray-50 p-4 text-gray-800 text-lg font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all cursor-pointer"
+                    className="w-full rounded-xl border border-gray-300 bg-gray-50 p-4 text-gray-800 text-base sm:text-lg font-semibold focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all cursor-pointer"
                   >
                     <option value="easy">Easy</option>
                     <option value="medium">Medium</option>
@@ -262,7 +262,7 @@ export default function QuizPage({ selectedDocId, setResultData }) {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={generate} 
-                  className="w-full rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4 text-lg font-bold text-white hover:from-blue-600 hover:to-blue-700 transition-all shadow-lg"
+                  className="w-full rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4 text-base sm:text-lg font-bold text-white hover:from-blue-600 hover:to-blue-700 transition-all shadow-lg"
                 >
                   Generate Quiz »
                 </motion.button>
@@ -276,11 +276,11 @@ export default function QuizPage({ selectedDocId, setResultData }) {
             </>
           ) : (
             <>
-              <div className="mb-6 flex justify-between items-center">
-                <h1 className="text-3xl font-bold text-gray-800">Quiz in Progress</h1>
+              <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Quiz in Progress</h1>
                 <div className="text-right">
                   <p className="text-sm text-gray-600">Time Remaining</p>
-                  <p className="text-2xl font-bold text-gray-800">{mmss}</p>
+                  <p className="text-xl sm:text-2xl font-bold text-gray-800">{mmss}</p>
                 </div>
               </div>
 
@@ -295,7 +295,7 @@ export default function QuizPage({ selectedDocId, setResultData }) {
               </div>
 
               <div className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">{q.question}</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6">{q.question}</h2>
                 {q.options?.length > 0 ? (
                   <div className="space-y-3">
                     {q.options.map((opt) => (
@@ -324,7 +324,7 @@ export default function QuizPage({ selectedDocId, setResultData }) {
                   </div>
                 ) : (
                   <input
-                    className="w-full rounded-xl border border-gray-300 bg-gray-50 p-4 text-gray-800 text-lg placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all"
+                    className="w-full rounded-xl border border-gray-300 bg-gray-50 p-4 text-gray-800 text-base sm:text-lg placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all"
                     value={answers[index] || ""}
                     onChange={(e) => {
                       const next = [...answers];
@@ -336,7 +336,7 @@ export default function QuizPage({ selectedDocId, setResultData }) {
                 )}
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <button 
                   disabled={index === 0} 
                   onClick={() => setIndex((i) => i - 1)} 

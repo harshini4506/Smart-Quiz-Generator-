@@ -53,7 +53,7 @@ export default function StudentAssignmentsPage() {
     <div className="min-h-screen bg-white py-8">
       <div className="mx-auto max-w-6xl px-4 space-y-8">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-800">Student Assignments</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-800">Student Assignments</h1>
           <p className="text-gray-600 mt-2">Attempt assigned quizzes before deadline and check marks after faculty evaluation.</p>
         </div>
 
@@ -67,7 +67,7 @@ export default function StudentAssignmentsPage() {
               const expired = new Date(a.deadline).getTime() < Date.now();
               return (
                 <div key={a.id} className="rounded-xl border border-gray-200 p-4">
-                  <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                     <div>
                       <p className="font-bold text-gray-800">{a.title}</p>
                       <p className="text-sm text-gray-600">Faculty: {a.faculty?.name || "Faculty"}</p>
@@ -77,7 +77,7 @@ export default function StudentAssignmentsPage() {
                     {!a.submitted && !expired && (
                       <button
                         onClick={() => setActiveAssignmentId(a.id)}
-                        className="rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+                        className="w-full sm:w-auto rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
                       >
                         Attempt Now
                       </button>
@@ -131,7 +131,7 @@ export default function StudentAssignmentsPage() {
             </div>
             <button
               onClick={submitAssignment}
-              className="mt-4 rounded-xl bg-blue-500 px-6 py-3 font-bold text-white hover:bg-blue-600"
+              className="mt-4 w-full sm:w-auto rounded-xl bg-blue-500 px-6 py-3 font-bold text-white hover:bg-blue-600"
             >
               Submit Assignment
             </button>

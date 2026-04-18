@@ -105,17 +105,17 @@ export default function LoginPage({ onLogin }) {
         transition={{ duration: 0.5 }}
         className="relative z-10 w-full max-w-md"
       >
-        <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-200">
+        <div className="bg-white rounded-3xl shadow-2xl p-5 sm:p-8 border border-gray-200">
           {/* Header */}
           <div className="text-center mb-8">
             <motion.h1 
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
-              className="text-5xl font-bold text-gray-800 mb-2"
+              className="text-4xl sm:text-5xl font-bold text-gray-800 mb-2"
             >
               WELCOME
             </motion.h1>
-            <p className="text-gray-600 text-lg">Make Your Own Quiz</p>
+            <p className="text-gray-600 text-base sm:text-lg">Make Your Own Quiz</p>
           </div>
 
           <form onSubmit={submit} className="space-y-5">

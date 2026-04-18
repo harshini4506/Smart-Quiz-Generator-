@@ -23,20 +23,20 @@ export default function DashboardPage({ user }) {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="mx-auto max-w-6xl px-4 py-12">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:py-12">
         <div className="text-center mb-12">
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl font-bold text-gray-800 mb-3"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-3"
           >
             Welcome, {user?.name || "Learner"}
           </motion.h1>
-          <p className="text-xl text-gray-600">What would you like to do today?</p>
+          <p className="text-base sm:text-xl text-gray-600">What would you like to do today?</p>
           <div className="mt-4 flex justify-center gap-2">
-            <span className="text-4xl">⭐</span>
-            <span className="text-4xl">✨</span>
-            <span className="text-4xl">⭐</span>
+            <span className="text-3xl sm:text-4xl">⭐</span>
+            <span className="text-3xl sm:text-4xl">✨</span>
+            <span className="text-3xl sm:text-4xl">⭐</span>
           </div>
         </div>
 
@@ -53,9 +53,9 @@ export default function DashboardPage({ user }) {
               transition={{ delay: idx * 0.1 }}
             >
               <Link to={card.to} className="block">
-                <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all p-8 border border-gray-200 hover:border-gray-300 h-full hover:bg-gray-50">
-                  <div className="text-5xl mb-4">{card.icon}</div>
-                  <h2 className="text-2xl font-bold text-gray-800 mb-2">{card.title}</h2>
+                <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all p-6 sm:p-8 border border-gray-200 hover:border-gray-300 h-full hover:bg-gray-50">
+                  <div className="text-4xl sm:text-5xl mb-4">{card.icon}</div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">{card.title}</h2>
                   <p className="text-gray-600">{card.desc}</p>
                   <button className="mt-4 inline-block px-6 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all shadow-md">
                     Open →
