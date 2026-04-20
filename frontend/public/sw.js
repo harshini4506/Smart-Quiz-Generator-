@@ -3,7 +3,20 @@ const CORE_ASSETS = ['/', '/index.html', '/manifest.json', '/icon-192.png', '/ic
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(CORE_ASSETS))
+    caches.open(CACHE_NAME).then(async (cache) => {
+      const results = await Promise.allSettled(
+        CORE_ASSETS.map(async (asset) => {
+          const response = await fetch(asset, { cache: 'no-store' });
+          if (response && response.ok) {
+            await cache.put(asset, response.clone());
+          }
+        })
+      );
+      const failed = results.filter((result) => result.status === 'rejected').length;
+      if (failed > 0) {
+        console.warn('Service worker precache failures:', failed);
+      }
+    })
   );
   self.skipWaiting();
 });
@@ -36,7 +49,7 @@ self.addEventListener('fetch', (event) => {
         })
         .catch(async () => {
           const cachedPage = await caches.match(event.request);
-          return cachedPage || caches.match('/index.html');
+          return cachedPage || caches.match('/index.html') || caches.match('/');
         })
     );
     return;
