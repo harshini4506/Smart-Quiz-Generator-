@@ -52,14 +52,35 @@ const isLocalMongoUri = (value) => {
   return uri.includes("127.0.0.1") || uri.includes("localhost");
 };
 
+const getMongoHost = (value) => {
+  try {
+    const uri = new URL(String(value || "").replace(/^mongodb\+srv:/, "https:"));
+    return uri.hostname || "unknown-host";
+  } catch {
+    return "unknown-host";
+  }
+};
+
+const isLikelyMongoUri = (value) => /^mongodb(\+srv)?:\/\//i.test(String(value || ""));
+
 const start = async () => {
   ensureDirs();
 
-  if (process.env.NODE_ENV === "production" && isLocalMongoUri(config.mongoUri)) {
-    throw new Error("MONGO_URI is still pointing to a local MongoDB address. Set the Render environment variable to your MongoDB Atlas connection string.");
+  if (process.env.NODE_ENV === "production") {
+    if (!isLikelyMongoUri(config.mongoUri)) {
+      throw new Error("MONGO_URI is missing or invalid. Set it in Render to your MongoDB Atlas connection string.");
+    }
+    if (isLocalMongoUri(config.mongoUri)) {
+      throw new Error("MONGO_URI is still pointing to a local MongoDB address. Set the Render environment variable to your MongoDB Atlas connection string.");
+    }
   }
 
-  await mongoose.connect(config.mongoUri);
+  try {
+    await mongoose.connect(config.mongoUri);
+  } catch (error) {
+    const host = getMongoHost(config.mongoUri);
+    throw new Error(`Failed to connect to MongoDB host '${host}'. Update Render MONGO_URI to the correct MongoDB Atlas string.`);
+  }
   app.listen(config.port, () => {
     console.log(`Server running on http://localhost:${config.port}`);
   });
