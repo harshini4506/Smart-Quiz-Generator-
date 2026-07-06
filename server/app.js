@@ -47,8 +47,18 @@ const ensureDirs = () => {
   fs.mkdirSync(path.resolve(config.vectorDir), { recursive: true });
 };
 
+const isLocalMongoUri = (value) => {
+  const uri = String(value || "");
+  return uri.includes("127.0.0.1") || uri.includes("localhost");
+};
+
 const start = async () => {
   ensureDirs();
+
+  if (process.env.NODE_ENV === "production" && isLocalMongoUri(config.mongoUri)) {
+    throw new Error("MONGO_URI is still pointing to a local MongoDB address. Set the Render environment variable to your MongoDB Atlas connection string.");
+  }
+
   await mongoose.connect(config.mongoUri);
   app.listen(config.port, () => {
     console.log(`Server running on http://localhost:${config.port}`);

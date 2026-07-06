@@ -68,7 +68,7 @@ Create `.env` in project root:
 
 ```env
 PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/smart_quiz_ai
+MONGO_URI=mongodb+srv://<username>:<password>@<cluster-host>/smart_quiz_ai?retryWrites=true&w=majority
 JWT_SECRET=change-this
 JWT_EXP_HOURS=24
 OPENAI_API_KEY=
@@ -97,6 +97,8 @@ npm start
 ```
 
 Frontend runs on `http://localhost:3000` and calls backend at `http://localhost:5000` by default.
+
+For Render deployment, set `MONGO_URI` to a MongoDB Atlas connection string and add `JWT_SECRET` in the Render environment variables.
 
 Optional frontend env (`frontend/.env`):
 

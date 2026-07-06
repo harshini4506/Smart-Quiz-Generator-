@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: smart-quiz-generator-api
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm run server
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXP_HOURS
+        value: 24
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: LLM_MODEL
+        value: gpt-4o-mini
+      - key: MAX_UPLOAD_MB
+        value: 15
+      - key: CORS_ORIGINS
+        sync: false
