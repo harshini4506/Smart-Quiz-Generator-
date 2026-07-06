@@ -9,18 +9,22 @@ export default function LoginPage({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
   const submit = async (e) => {
     e.preventDefault();
     setError("");
+    setIsSubmitting(true);
     try {
       const payload = { email, password };
       if (accountType !== "auto") {
         payload.role = accountType;
       }
       const { data } = await api.post("/auth/login", payload);
-      onLogin(data.token, data.user);
+      if (typeof onLogin === "function") {
+        onLogin(data.token, data.user);
+      }
       navigate("/dashboard");
     } catch (err) {
       if (!err?.response) {
@@ -28,6 +32,8 @@ export default function LoginPage({ onLogin }) {
       } else {
         setError(err?.response?.data?.error || "Login failed");
       }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -169,9 +175,11 @@ export default function LoginPage({ onLogin }) {
             <motion.button 
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4 font-bold text-white shadow-lg hover:from-blue-600 hover:to-blue-700 transition-all text-lg"
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4 font-bold text-white shadow-lg hover:from-blue-600 hover:to-blue-700 transition-all text-lg disabled:cursor-not-allowed disabled:opacity-70"
             >
-              Login »
+              {isSubmitting ? "Logging in..." : "Login »"}
             </motion.button>
           </form>
 
